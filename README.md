@@ -1,15 +1,19 @@
 # f1monkey
 
 ## Project setup
+* Install dependencies
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+## Development
+* Copy `docker-compose.override.yml.dist` to `docker-compose.override.yml`
 ```
-npm run serve
+cp docker-compose.override.yml.dist docker-compose.override.yml
 ```
-
+* Run docker containers
+```
+docker-compose up -d
+```
 ### Compiles and minifies for production
 ```
 npm run build

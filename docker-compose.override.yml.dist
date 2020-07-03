@@ -1,0 +1,6 @@
+version: '3.7'
+
+services:
+    node:
+        ports:
+            - 8100:8080

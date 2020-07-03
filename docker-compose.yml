@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+    node:
+        command: npm run serve
+        build:
+          context: './docker/node'
+        volumes:
+            - '.:/srv'
