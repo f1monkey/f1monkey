@@ -13,7 +13,9 @@ cp docker-compose.override.yml.dist docker-compose.override.yml
 * Run docker containers
 ```
 docker-compose up -d
+
 ```
+## Useful commands
 ### Compiles and minifies for production
 ```
 npm run build
