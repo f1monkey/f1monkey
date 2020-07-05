@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import 'buefy/dist/buefy.css';
+import 'reflect-metadata';
 
 Vue.config.productionTip = false;
 

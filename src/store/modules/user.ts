@@ -1,3 +1,4 @@
+import AuthService from '@/lib/Auth/Service/AuthService';
 import { Module } from 'vuex';
 import RootState from '@/store/rootstate';
 import User from '@/lib/Auth/Dto/User';
@@ -13,10 +14,12 @@ const UserModule: Module<UserState, RootState> = {
   },
   actions: {
     login: ({ commit }, payload: User) => {
-      commit('LOGIN', payload.username);
+      const auth = new AuthService();
+      auth.login(payload);
+      commit('LOGIN', payload.getUsername());
     },
     register: ({ commit }, payload: User) => {
-      commit('LOGIN', payload.username);
+      commit('LOGIN', payload.getUsername());
     },
   },
   mutations: {

@@ -1,19 +1,19 @@
 class User {
-    private _username: string;
+    private username: string;
 
-    private _email: string|undefined;
+    private email: string|undefined;
 
     constructor(username: string, email?: string|undefined) {
-      this._username = username;
-      this._email = email;
+      this.username = username;
+      this.email = email;
     }
 
-    public get username(): string {
-      return this._username;
+    public getUsername(): string {
+      return this.username;
     }
 
-    public get email(): string|undefined {
-      return this._email;
+    public getEmail(): string|undefined {
+      return this.email;
     }
 }
 
