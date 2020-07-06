@@ -1,15 +1,27 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, { StoreOptions } from 'vuex';
+import RootState from '@/store/rootstate';
+import user from '@/store/modules/user';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store: StoreOptions<RootState> = {
   state: {
+    loading: true,
   },
   mutations: {
+    SET_LOADING(state, payload: boolean) {
+      state.loading = payload;
+    },
   },
   actions: {
+    setLoading({ commit }, payload: boolean) {
+      commit('SET_LOADING', payload);
+    },
   },
   modules: {
+    user,
   },
-});
+};
+
+export default new Vuex.Store<RootState>(store);
