@@ -1,35 +1,34 @@
+import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
 import axios from 'axios';
-// import store from '@/store';
+import { injectable } from 'tsyringe';
 
 const API_URL = process.env.VUE_APP_API_BASE_URL;
 
-export async function getRequest<T>(url: string, params?: any): Promise<T> {
-  // try {
-  const result = await axios.get<T>(API_URL + url, { params });
+@injectable()
+class ApiClient implements ApiClientInterface {
+  async get<T>(url: string, params?: object): Promise<T> {
+    const result = await axios.get<T>(API_URL + url, { params });
 
-  return result.data;
-  // } catch (e) {
-  // store.dispatch('error', { message: e.message });
-  // throw e;
-  // }
+    return result.data;
+  }
+
+  async post<T>(url: string, data?: object): Promise<T> {
+    const result = await axios.post(API_URL + url, data);
+
+    return result.data;
+  }
+
+  async put<T>(url: string, data?: object): Promise<T> {
+    const result = await axios.put(API_URL + url, data);
+
+    return result.data;
+  }
+
+  async delete<T>(url: string, data?: object): Promise<T> {
+    const result = await axios.delete(API_URL + url, data);
+
+    return result.data;
+  }
 }
 
-export async function postRequest<T>(url: string, data?: object): Promise<T> {
-  // try {
-  const result = await axios.post(API_URL + url, data);
-  return result.data;
-  // } catch (e) {
-  // store.dispatch('error', { message: e.message });
-  // throw e;
-  // }
-}
-
-export async function deleteRequest<T>(url: string, data: any): Promise<T> {
-  // try {
-  const result = await axios.delete(API_URL + url, data);
-  return result.data;
-  // } catch (e) {
-  // store.dispatch('error', { message: e.message });
-  // throw e;
-  // }
-}
+export default ApiClient;

@@ -5,13 +5,17 @@ import RegisterRequest from '@/lib/Auth/Dto/Request/RegisterRequest';
 import RegisterServiceInterface from '@/lib/Auth/Service/RegisterServiceInterface';
 import TokenPair from '@/lib/Auth/Dto/TokenPair';
 import User from '@/lib/Auth/Dto/User';
-import { postRequest } from '@/lib/Api/Service/ApiClient';
+import { inject, injectable } from 'tsyringe';
+import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
 
+@injectable()
 class AuthService implements AuthServiceInterface, RegisterServiceInterface {
+  constructor(@inject('ApiClientInterface') private client: ApiClientInterface) {}
+
   async login(user: User): Promise<User> {
     const request = new LoginRequest(user.getUsername());
 
-    const response = await postRequest<User>('/v1/auth/login', request);
+    const response = await this.client.post<User>('/v1/auth/login', request);
 
     return response;
   }
@@ -19,7 +23,7 @@ class AuthService implements AuthServiceInterface, RegisterServiceInterface {
   async loginConfirm(user: User, code: string): Promise<TokenPair> {
     const request = new LoginConfirmRequest(user.getUsername(), code);
 
-    const response = await postRequest<TokenPair>('/v1/auth/confirm', request);
+    const response = await this.client.post<TokenPair>('/v1/auth/confirm', request);
 
     return response;
   }
@@ -27,7 +31,7 @@ class AuthService implements AuthServiceInterface, RegisterServiceInterface {
   async register(user: User): Promise<User> {
     const request = new RegisterRequest(user.getUsername(), user.getEmail() ?? '');
 
-    const response = await postRequest<User>('/v1/auth/confirm', request);
+    const response = await this.client.post<User>('/v1/auth/confirm', request);
 
     return response;
   }
