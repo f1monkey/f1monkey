@@ -1,41 +1,21 @@
-class EventDispatcher {
-  private listeners: Map<AppEvent, Array<AppEventListener>>
+import EventListenerRegistry from '@/lib/Event/Service/EventListenerRegistry';
+import EventListenerRegistryInterface from '@/lib/Event/Service/EventListenerRegistryInterface';
+import { injectable, inject } from 'tsyringe';
+import EventDispatcherInterface from '@/lib/Event/Service/EventDispatcherInterface';
 
-  constructor() {
-    this.listeners = new Map();
-  }
+@injectable()
+class EventDispatcher implements EventDispatcherInterface {
+  constructor(
+    @inject(EventListenerRegistry) private registry: EventListenerRegistryInterface,
+  ) {}
 
   public dispatch<T extends AppEvent>(event: T): void {
-    const listeners = this.listeners.get(event.constructor);
+    const listeners = this.registry.getListeners(event.constructor);
     if (listeners) {
       listeners.forEach((callback) => {
         callback(event);
       });
     }
-  }
-
-  public addListener(event: AppEvent, listener: AppEventListener) {
-    let listeners = this.listeners.get(event);
-    if (!listeners) {
-      listeners = [listener];
-      this.listeners.set(event, listeners);
-    } else {
-      listeners.push(listener);
-    }
-  }
-
-  public removeListener(event: AppEvent, listener: AppEventListener) {
-    const listeners = this.listeners.get(event);
-    if (!listeners) {
-      return;
-    }
-
-    const i = listeners.indexOf(listener);
-    if (i !== -1) {
-      return;
-    }
-
-    listeners.splice(i, 1);
   }
 }
 

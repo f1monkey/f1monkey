@@ -1,10 +1,15 @@
+import 'buefy/dist/buefy.css';
+import 'reflect-metadata';
+
+import '@/lib/Api/container';
+import '@/lib/Auth/container';
+import '@/lib/Event/container';
+
 import Vue from 'vue';
 import Buefy from 'buefy';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import 'buefy/dist/buefy.css';
-import 'reflect-metadata';
 
 Vue.config.productionTip = false;
 
