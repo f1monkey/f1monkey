@@ -1,9 +1,6 @@
 import 'buefy/dist/buefy.css';
 import 'reflect-metadata';
-
-import '@/lib/Api/container';
-import '@/lib/Auth/container';
-import '@/lib/Event/container';
+import '@/container';
 
 import Vue from 'vue';
 import Buefy from 'buefy';

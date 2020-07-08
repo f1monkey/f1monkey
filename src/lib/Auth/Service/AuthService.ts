@@ -1,16 +1,17 @@
 import AuthServiceInterface from '@/lib/Auth/Service/AuthServiceInterface';
+import API_SERVICES from '@/lib/Api/services';
+import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
 import LoginConfirmRequest from '@/lib/Auth/Dto/Request/LoginConfirmRequest';
 import LoginRequest from '@/lib/Auth/Dto/Request/LoginRequest';
 import RegisterRequest from '@/lib/Auth/Dto/Request/RegisterRequest';
 import RegisterServiceInterface from '@/lib/Auth/Service/RegisterServiceInterface';
 import TokenPair from '@/lib/Auth/Dto/TokenPair';
 import User from '@/lib/Auth/Dto/User';
-import { inject, injectable } from 'tsyringe';
-import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
+import { inject, injectable } from 'inversify';
 
 @injectable()
 class AuthService implements AuthServiceInterface, RegisterServiceInterface {
-  constructor(@inject('ApiClientInterface') private client: ApiClientInterface) {}
+  constructor(@inject(API_SERVICES.ApiClientInterface) private client: ApiClientInterface) {}
 
   async login(user: User): Promise<User> {
     const request = new LoginRequest(user.getUsername());

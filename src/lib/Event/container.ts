@@ -1,6 +1,11 @@
+import EventDispatcherInterface from '@/lib/Event/Service/EventDispatcherInterface';
+import EventListenerRegistryInterface from '@/lib/Event/Service/EventListenerRegistryInterface';
+import SERVICES from '@/lib/Event/services';
+import { Container } from 'inversify';
 import EventDispatcher from '@/lib/Event/Service/EventDispatcher';
-import { container } from 'tsyringe';
+import EventListenerRegistry from '@/lib/Event/Service/EventListenerRegistry';
 
-container.register('EventDispatcherInterface', {
-  useClass: EventDispatcher,
-});
+export default function register(container: Container) {
+  container.bind<EventDispatcherInterface>(SERVICES.EventDispatcherInterface).to(EventDispatcher);
+  container.bind<EventListenerRegistryInterface>(SERVICES.EventListenerRegistryInterface).to(EventListenerRegistry);
+}

@@ -1,6 +1,6 @@
 import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
 import axios from 'axios';
-import { injectable } from 'tsyringe';
+import { injectable } from 'inversify';
 
 const API_URL = process.env.VUE_APP_API_BASE_URL;
 
