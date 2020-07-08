@@ -1,15 +1,17 @@
 import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
-import ApiClient from '@/lib/Api/Service/ApiClient';
-import EventDispatcher from '@/lib/Event/Service/EventDispatcher';
 import EventDispatcherInterface from '@/lib/Event/Service/EventDispatcherInterface';
-import { AxiosError, AxiosResponse } from 'axios';
-import { injectable, inject } from 'tsyringe';
+import { injectable, inject } from 'inversify';
+import RequestErrorEvent from '@/lib/Api/Event/RequestErrorEvent';
+import ErrorResponseFactory from '@/lib/Api/Factory/ErrorResponseFactory';
+import SERVICES from '@/lib/Api/services';
+import EVENT_SERVICES from '@/lib/Event/services';
 
 @injectable()
 class ApiClientErrorProxy implements ApiClientInterface {
   constructor(
-    @inject(ApiClient) private client: ApiClientInterface,
-    @inject(EventDispatcher) private dispatcher: EventDispatcherInterface,
+    @inject(SERVICES.ApiClient) private client: ApiClientInterface,
+    @inject(EVENT_SERVICES.EventDispatcherInterface) private dispatcher: EventDispatcherInterface,
+    @inject(SERVICES.ErrorResponseFactory) private factory: ErrorResponseFactory,
   ) {}
 
   async get<T>(url: string, params?: object): Promise<T> {
@@ -18,9 +20,7 @@ class ApiClientErrorProxy implements ApiClientInterface {
 
       return result;
     } catch (e) {
-      if (this.isAxiosError(e)) {
-        console.dir(e.response);
-      }
+      this.handleError(e);
       throw e;
     }
   }
@@ -31,9 +31,7 @@ class ApiClientErrorProxy implements ApiClientInterface {
 
       return result;
     } catch (e) {
-      if (this.isAxiosError(e)) {
-        console.dir(e.response);
-      }
+      this.handleError(e);
       throw e;
     }
   }
@@ -44,9 +42,7 @@ class ApiClientErrorProxy implements ApiClientInterface {
 
       return result;
     } catch (e) {
-      if (this.isAxiosError(e)) {
-        console.dir(e.response);
-      }
+      this.handleError(e);
       throw e;
     }
   }
@@ -57,21 +53,16 @@ class ApiClientErrorProxy implements ApiClientInterface {
 
       return result;
     } catch (e) {
-      if (this.isAxiosError(e)) {
-        console.dir(e.response);
-      }
+      this.handleError(e);
       throw e;
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected isAxiosError(e: any): e is AxiosError {
-    return e && e.response && this.isAxiosResponse(e.response);
-  }
+  protected handleError(e: any) {
+    const errorResponse = this.factory.create(e);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected isAxiosResponse(response: any): response is AxiosResponse {
-    return response && response.data !== undefined;
+    this.dispatcher.dispatch(new RequestErrorEvent(errorResponse));
   }
 }
 

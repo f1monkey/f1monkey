@@ -1,17 +1,20 @@
-import { injectable } from 'tsyringe';
 import EventListenerRegistryInterface from '@/lib/Event/Service/EventListenerRegistryInterface';
+import { injectable } from 'inversify';
 
 @injectable()
 class EventListenerRegistry implements EventListenerRegistryInterface {
-  private listeners: Map<AppEvent, Array<AppEventListener<AppEvent>>>
+  private listeners: AppEventListenerMap
+
+  public rand: number;
 
   constructor() {
     this.listeners = new Map();
+    this.rand = Math.random();
   }
 
   public addListener<T extends AppEvent>(event: T, listener: AppEventListener<T>): void {
     let listeners = this.listeners.get(event);
-    if (!listeners) {
+    if (listeners === undefined) {
       listeners = [listener];
       this.listeners.set(event, listeners);
     } else {

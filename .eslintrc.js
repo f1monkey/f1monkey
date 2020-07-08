@@ -17,6 +17,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-useless-constructor': 'off',
     'class-methods-use-this': 'off',
+    'max-len': [2, 200],
   },
   overrides: [
     {
