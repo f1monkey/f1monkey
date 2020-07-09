@@ -16,23 +16,21 @@ const registry = container.get<EventListenerRegistryInterface>(SERVICES.EventLis
 
 @Component({})
 export default class ErrorPopup extends Vue {
-  public mounted() {
-    registry.addListener(RequestErrorEvent, (event: RequestErrorEvent) => {
-      this.$buefy.toast.open({
-        duration: 2000,
-        message: event.getResponse().getMessage(),
-        position: 'is-bottom',
-        type: 'is-danger',
-      });
+  protected listener = (event: RequestErrorEvent) => {
+    this.$buefy.toast.open({
+      duration: 2000,
+      message: event.getResponse().getMessage(),
+      position: 'is-bottom',
+      type: 'is-danger',
     });
-  }
+  };
 
-  public toast() {
-    this.$buefy.toast.open('Something happened');
+  public mounted() {
+    registry.addListener(RequestErrorEvent, this.listener);
   }
 
   public destroyed() {
-    // @todo remove listener
+    registry.removeListener(RequestErrorEvent, this.listener);
   }
 }
 </script>

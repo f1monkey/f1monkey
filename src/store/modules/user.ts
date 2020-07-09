@@ -3,11 +3,9 @@ import RootState from '@/store/rootstate';
 import User from '@/lib/Auth/Dto/User';
 import container from '@/container';
 import AuthServiceInterface from '@/lib/Auth/Service/AuthServiceInterface';
-import RegisterServiceInterface from '@/lib/Auth/Service/RegisterServiceInterface';
 import SERVICES from '@/lib/Auth/services';
 
 const authService = container.get<AuthServiceInterface>(SERVICES.AuthServiceInterface);
-// const registerService = container.resolve<RegisterServiceInterface>(SERVICES.RegisterServiceInterface);
 
 export interface UserState {
   username: string | undefined;
@@ -26,11 +24,11 @@ const UserModule: Module<UserState, RootState> = {
       commit('LOGIN', payload.getUsername());
     },
     loginConfirm: async ({ commit }, payload: { user: User; code: string }) => {
-      // const tokens = await authService.loginConfirm(payload.user, payload.code);
+      const tokens = await authService.loginConfirm(payload.user, payload.code);
       // commit('LOGIN_CONFIRM', payload.getUsername());
     },
     register: async ({ commit }, payload: User) => {
-      // await registerService.register(payload);
+      await authService.register(payload);
       commit('LOGIN', payload.getUsername());
     },
   },

@@ -6,6 +6,8 @@ interface AuthServiceInterface
   login(user: User): Promise<User>;
 
   loginConfirm(user: User, code: string): Promise<TokenPair>;
+
+  register(user: User): Promise<User>;
 }
 
 export default AuthServiceInterface;
