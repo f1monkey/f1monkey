@@ -1,10 +1,15 @@
 <template>
-  <router-view></router-view>
+  <div>Market</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class AuthView extends Vue {}
+export default class Market extends Vue {
+  constructor() {
+    super();
+  }
+}
+
 </script>

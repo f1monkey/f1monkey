@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-tabs
+      position="is-right"
+      class="block"
+      @change="go"
+    >
+      <b-tab-item
+        label="Market"
+        icon="bitcoin"
+        value="Market"
+      ></b-tab-item>
+      <b-tab-item
+        label="Settings"
+        icon="cog"
+        value="Settings"
+      ></b-tab-item>
+    </b-tabs>
+    <router-view></router-view>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
-};
+@Component
+export default class HomeView extends Vue {
+  go(tab: string) {
+    this.$router.push({ name: tab });
+  }
+}
 </script>

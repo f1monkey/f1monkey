@@ -1,9 +1,14 @@
-import 'buefy/dist/buefy.css';
 import 'reflect-metadata';
+
+import '@mdi/font/css/materialdesignicons.min.css';
+import '@mdi/font/fonts/materialdesignicons-webfont.woff2';
+
+import 'buefy/dist/buefy.css';
+import Buefy from 'buefy';
+
 import '@/container';
 
 import Vue from 'vue';
-import Buefy from 'buefy';
 import App from './App.vue';
 import router from './router';
 import store from './store';

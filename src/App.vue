@@ -7,7 +7,6 @@
       <router-view />
       <error-popup />
     </section>
-
   </div>
 </template>
 
