@@ -1,11 +1,11 @@
-import AuthServiceInterface from '@/lib/Auth/Service/AuthServiceInterface';
+import AuthServiceInterface from '@/lib/User/Service/AuthServiceInterface';
 import API_SERVICES from '@/lib/Api/services';
 import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
-import LoginConfirmRequest from '@/lib/Auth/Dto/Request/LoginConfirmRequest';
-import LoginRequest from '@/lib/Auth/Dto/Request/LoginRequest';
-import RegisterRequest from '@/lib/Auth/Dto/Request/RegisterRequest';
-import TokenPair from '@/lib/Auth/Dto/TokenPair';
-import User from '@/lib/Auth/Dto/User';
+import LoginConfirmRequest from '@/lib/User/Dto/Request/LoginConfirmRequest';
+import LoginRequest from '@/lib/User/Dto/Request/LoginRequest';
+import RegisterRequest from '@/lib/User/Dto/Request/RegisterRequest';
+import TokenPair from '@/lib/User/Dto/TokenPair';
+import User from '@/lib/User/Dto/User';
 import { inject, injectable } from 'inversify';
 
 @injectable()

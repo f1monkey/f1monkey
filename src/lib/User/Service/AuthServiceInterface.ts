@@ -1,5 +1,5 @@
-import TokenPair from '@/lib/Auth/Dto/TokenPair';
-import User from '@/lib/Auth/Dto/User';
+import TokenPair from '@/lib/User/Dto/TokenPair';
+import User from '@/lib/User/Dto/User';
 
 interface AuthServiceInterface
 {

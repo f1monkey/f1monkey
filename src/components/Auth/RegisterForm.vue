@@ -20,16 +20,32 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import User from '@/lib/Auth/Dto/User';
+import User from '@/lib/User/Dto/User';
 
 @Component
 export default class RegisterForm extends Vue {
-  protected username = '';
+  get username() {
+    return this.$store.state.user.login.username;
+  }
 
-  protected email = '';
+  set username(value: string) {
+    this.$store.commit('user/SET_LOGIN_USERNAME', value);
+  }
 
-  protected register() {
-    this.$store.dispatch('user/register', new User(this.username, this.email));
+  get email() {
+    return this.$store.state.user.login.email;
+  }
+
+  set email(value: string) {
+    this.$store.commit('user/SET_LOGIN_EMAIL', value);
+  }
+
+  async register() {
+    try {
+      await this.$store.dispatch('user/register', new User(this.username, this.email));
+      this.$router.push({ name: 'AuthConfirm' });
+    // eslint-disable-next-line no-empty
+    } catch (e) {}
   }
 }
 </script>

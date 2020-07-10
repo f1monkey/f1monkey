@@ -1,6 +1,5 @@
 <template>
   <div>
-    mounted
   </div>
 </template>
 
