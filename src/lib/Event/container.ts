@@ -6,6 +6,6 @@ import EventDispatcher from '@/lib/Event/Service/EventDispatcher';
 import EventListenerRegistry from '@/lib/Event/Service/EventListenerRegistry';
 
 export default function register(container: Container) {
-  container.bind<EventDispatcherInterface>(SERVICES.EventDispatcherInterface).to(EventDispatcher);
-  container.bind<EventListenerRegistryInterface>(SERVICES.EventListenerRegistryInterface).to(EventListenerRegistry);
+  container.bind<EventDispatcherInterface>(SERVICES.EventDispatcherInterface).to(EventDispatcher).inSingletonScope();
+  container.bind<EventListenerRegistryInterface>(SERVICES.EventListenerRegistryInterface).to(EventListenerRegistry).inSingletonScope();
 }

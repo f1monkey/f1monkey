@@ -13,14 +13,24 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import User from '@/lib/Auth/Dto/User';
+import User from '@/lib/User/Dto/User';
 
 @Component
 export default class LoginForm extends Vue {
-  username = '';
+  get username() {
+    return this.$store.state.user.login.username;
+  }
+
+  set username(value: string) {
+    this.$store.commit('user/SET_LOGIN_USERNAME', value);
+  }
 
   async login() {
-    await this.$store.dispatch('user/login', new User(this.username));
+    try {
+      await this.$store.dispatch('user/login', new User(this.username));
+      this.$router.push({ name: 'AuthConfirm' });
+    // eslint-disable-next-line no-empty
+    } catch (e) {}
   }
 }
 </script>

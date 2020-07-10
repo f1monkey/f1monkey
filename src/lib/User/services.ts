@@ -1,6 +1,6 @@
 const SERVICES = {
   AuthServiceInterface: Symbol('AuthServiceInterface'),
-  RegisterServiceInterface: Symbol('RegisterServiceInterface'),
+  UserStorageInterface: Symbol('UserStorageInterface'),
 };
 
 export default SERVICES;
