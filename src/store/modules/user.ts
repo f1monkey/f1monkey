@@ -27,14 +27,15 @@ const UserModule: Module<UserState, RootState> = {
     user: userStorage.getCurrent(),
     confirmed: false,
     login: {
-      username: '',
-      email: '',
+      username: userStorage.getCurrent()?.getUsername() ?? '',
+      email: userStorage.getCurrent()?.getEmail() ?? '',
     },
   },
   actions: {
     login: async ({ commit }, payload: User) => {
-      commit('SET_USER', payload);
-      await authService.login(payload);
+      const response = await authService.login(payload);
+      const user = new User(response.username, response.email);
+      commit('SET_USER', user);
     },
     loginConfirm: async ({ commit, state }, payload: string) => {
       const { user } = state;
@@ -46,8 +47,9 @@ const UserModule: Module<UserState, RootState> = {
       commit('SET_TOKENS', tokens);
     },
     register: async ({ commit }, payload: User) => {
-      await authService.register(payload);
-      commit('SET_USER', payload);
+      const response = await authService.register(payload);
+      const user = new User(response.username, response.email);
+      commit('SET_USER', user);
     },
   },
   mutations: {

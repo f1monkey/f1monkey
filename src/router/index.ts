@@ -1,24 +1,30 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
+
+import auth from '@/router/auth';
+
+import container from '@/container';
+import SERVICES from '@/lib/User/services';
+import AuthServiceInterface from '@/lib/User/Service/AuthServiceInterface';
 import Home from '../views/Home.vue';
+
+const authService = container.get<AuthServiceInterface>(SERVICES.AuthServiceInterface);
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
-  {
-    path: '/auth',
-    name: 'Auth',
-    component: () => import(/* webpackChunkName: "auth" */ '@/views/Auth.vue'),
-  },
-  {
-    path: '/auth/confirm',
-    name: 'AuthConfirm',
-    component: () => import(/* webpackChunkName: "auth" */ '@/views/AuthConfirm.vue'),
-  },
+  ...auth,
   {
     path: '/',
     name: 'Home',
     component: Home,
+    beforeEnter: (to, from, next) => {
+      if (!authService.isAuthenticated()) {
+        next({ name: 'Auth' });
+      } else {
+        next();
+      }
+    },
   },
 ];
 

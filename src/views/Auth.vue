@@ -1,15 +1,10 @@
 <template>
-  <auth></auth>
+  <router-view></router-view>
 </template>
 
 <script>
 import { Component, Vue } from 'vue-property-decorator';
-import Auth from '@/components/Auth/Auth.vue';
 
-@Component({
-  components: {
-    Auth,
-  },
-})
+@Component
 export default class AuthView extends Vue {}
 </script>
