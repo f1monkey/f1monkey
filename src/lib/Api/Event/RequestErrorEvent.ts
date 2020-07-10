@@ -1,14 +1,10 @@
 import ErrorResponse from '@/lib/Api/Dto/ErrorResponse';
 
 class RequestErrorEvent {
-  private response: ErrorResponse;
+  public response: ErrorResponse;
 
   constructor(response: ErrorResponse) {
     this.response = response;
-  }
-
-  public getResponse(): ErrorResponse {
-    return this.response;
   }
 }
 

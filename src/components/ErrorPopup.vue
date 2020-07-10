@@ -18,7 +18,7 @@ export default class ErrorPopup extends Vue {
   protected listener = (event: RequestErrorEvent) => {
     this.$buefy.toast.open({
       duration: 2000,
-      message: event.getResponse().getMessage(),
+      message: event.response.getMessage(),
       position: 'is-bottom',
       type: 'is-danger',
     });

@@ -12,7 +12,7 @@ class EventListenerRegistry implements EventListenerRegistryInterface {
     this.rand = Math.random();
   }
 
-  public addListener<T extends AppEvent>(event: T, listener: AppEventListener<T>): void {
+  public addListener<T extends AppEvent>(event: T, listener: AppEventListener): void {
     let listeners = this.listeners.get(event);
     if (listeners === undefined) {
       listeners = [listener];
@@ -22,7 +22,7 @@ class EventListenerRegistry implements EventListenerRegistryInterface {
     }
   }
 
-  public removeListener<T extends AppEvent>(event: T, listener: AppEventListener<T>): void {
+  public removeListener<T extends AppEvent>(event: T, listener: AppEventListener): void {
     const listeners = this.listeners.get(event);
     if (!listeners) {
       return;
@@ -35,7 +35,7 @@ class EventListenerRegistry implements EventListenerRegistryInterface {
     listeners.splice(i, 1);
   }
 
-  public getListeners<T extends AppEvent>(event: T): Array<AppEventListener<T>> | undefined {
+  public getListeners<T extends AppEvent>(event: T): Array<AppEventListener> | undefined {
     return this.listeners.get(event);
   }
 }
