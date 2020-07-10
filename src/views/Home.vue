@@ -25,7 +25,10 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HomeView extends Vue {
-  go(tab: string) {
+  go(tab: string): void {
+    if (this.$router.currentRoute.name === tab) {
+      return;
+    }
     this.$router.push({ name: tab });
   }
 }
