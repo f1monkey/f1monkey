@@ -3,15 +3,15 @@ import EventDispatcherInterface from '@/lib/Event/Service/EventDispatcherInterfa
 import { injectable, inject } from 'inversify';
 import RequestErrorEvent from '@/lib/Api/Event/RequestErrorEvent';
 import ErrorResponseFactory from '@/lib/Api/Factory/ErrorResponseFactory';
-import SERVICES from '@/lib/Api/services';
+import API_SERVICES from '@/lib/Api/services';
 import EVENT_SERVICES from '@/lib/Event/services';
 
 @injectable()
-class ApiClientErrorProxy implements ApiClientInterface {
+class InternalApiClientErrorProxy implements ApiClientInterface {
   constructor(
-    @inject(SERVICES.ApiClient) private client: ApiClientInterface,
+    @inject(API_SERVICES.InternalApiClientImpl) private client: ApiClientInterface,
     @inject(EVENT_SERVICES.EventDispatcherInterface) private dispatcher: EventDispatcherInterface,
-    @inject(SERVICES.ErrorResponseFactory) private factory: ErrorResponseFactory,
+    @inject(API_SERVICES.ErrorResponseFactory) private factory: ErrorResponseFactory,
   ) {}
 
   async get<T>(url: string, params?: object): Promise<T> {
@@ -47,9 +47,9 @@ class ApiClientErrorProxy implements ApiClientInterface {
     }
   }
 
-  async delete<T>(url: string, data?: object): Promise<T> {
+  async delete<T>(url: string): Promise<T> {
     try {
-      const result = await this.client.delete<T>(url, data);
+      const result = await this.client.delete<T>(url);
 
       return result;
     } catch (e) {
@@ -66,4 +66,4 @@ class ApiClientErrorProxy implements ApiClientInterface {
   }
 }
 
-export default ApiClientErrorProxy;
+export default InternalApiClientErrorProxy;

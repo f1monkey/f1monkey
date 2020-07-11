@@ -1,6 +1,6 @@
 const SERVICES = {
-  ApiClient: Symbol('ApiClient'),
-  ApiClientInterface: Symbol('ApiClientInterface'),
+  InternalApiClientImpl: Symbol('InternalApiClientImpl'),
+  InternalApiClient: Symbol('InternalApiClient'),
   ErrorResponseFactory: Symbol('ErrorResponseFactory'),
 };
 

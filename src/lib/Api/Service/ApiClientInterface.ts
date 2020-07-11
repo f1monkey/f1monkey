@@ -5,7 +5,7 @@ interface ApiClientInterface {
 
   put<T>(url: string, data?: object): Promise<T>;
 
-  delete<T>(url: string, data?: object): Promise<T>;
+  delete<T>(url: string): Promise<T>;
 }
 
 export default ApiClientInterface;

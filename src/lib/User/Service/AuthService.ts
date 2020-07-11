@@ -14,7 +14,7 @@ import TokenResponse from '@/lib/User/Dto/Response/TokenResponse';
 @injectable()
 class AuthService implements AuthServiceInterface {
   constructor(
-    @inject(API_SERVICES.ApiClientInterface) private client: ApiClientInterface,
+    @inject(API_SERVICES.InternalApiClient) private client: ApiClientInterface,
     @inject(USER_SERVICES.UserStorageInterface) private storage: UserStorageInterface,
   ) {}
 

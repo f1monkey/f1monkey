@@ -1,12 +1,12 @@
 import { Container } from 'inversify';
 import SERVICES from '@/lib/Api/services';
-import ApiClient from '@/lib/Api/Service/ApiClient';
 import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
 import ErrorResponseFactory from '@/lib/Api/Factory/ErrorResponseFactory';
-import ApiClientErrorProxy from '@/lib/Api/Service/ApiClientErrorProxy';
+import InternalApiClientErrorProxy from '@/lib/Api/Service/ApiClientErrorProxy';
+import InternalApiClient from '@/lib/Api/Service/InternalApiClient';
 
 export default function register(container: Container) {
-  container.bind<ApiClient>(SERVICES.ApiClient).to(ApiClient);
-  container.bind<ApiClientInterface>(SERVICES.ApiClientInterface).to(ApiClientErrorProxy);
+  container.bind<InternalApiClient>(SERVICES.InternalApiClientImpl).to(InternalApiClient);
+  container.bind<ApiClientInterface>(SERVICES.InternalApiClient).to(InternalApiClientErrorProxy);
   container.bind<ErrorResponseFactory>(SERVICES.ErrorResponseFactory).to(ErrorResponseFactory);
 }
