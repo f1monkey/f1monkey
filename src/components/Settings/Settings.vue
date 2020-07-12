@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <router-tabs :tabs="['Settings-Characters', 'Settings-Account']">
+    <router-tabs :routes="['Settings-Characters', 'Settings-Account']">
       <b-tab-item
         label="Characters"
         icon="account-group"
