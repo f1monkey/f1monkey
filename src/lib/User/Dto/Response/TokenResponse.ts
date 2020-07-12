@@ -1,5 +1,5 @@
 class TokenResponse {
-  public accessToken = '';
+  public token = '';
 
   public refreshToken = '';
 }

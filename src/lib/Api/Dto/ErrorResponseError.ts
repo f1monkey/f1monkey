@@ -1,11 +1,11 @@
-import { jsonObject, jsonMember } from 'typedjson';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-@jsonObject()
+@Serializable()
 class ErrorResponseError {
-  @jsonMember
+  @JsonProperty()
   public field = '';
 
-  @jsonMember
+  @JsonProperty()
   public message = '';
 }
 

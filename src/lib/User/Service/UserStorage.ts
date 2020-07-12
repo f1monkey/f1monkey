@@ -2,6 +2,7 @@ import User from '@/lib/User/Dto/User';
 import TokenPair from '@/lib/User/Dto/TokenPair';
 import UserStorageInterface from '@/lib/User/Service/UserStorageInterface';
 import { injectable } from 'inversify';
+import { deserialize } from 'typescript-json-serializer';
 
 const LOCALSTORAGE_KEY = 'user';
 
@@ -13,9 +14,7 @@ class UserStorage implements UserStorageInterface {
     if (this.user === undefined) {
       const storedData = localStorage.getItem(LOCALSTORAGE_KEY);
       if (storedData !== null) {
-        const storedUser = JSON.parse(storedData) as User;
-        this.user = new User('');
-        Object.assign(this.user, storedUser);
+        this.user = deserialize(JSON.parse(storedData), User);
       }
     }
 

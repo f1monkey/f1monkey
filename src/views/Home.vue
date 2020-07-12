@@ -13,7 +13,7 @@
       <b-tab-item
         label="Settings"
         icon="cog"
-        value="Settings"
+        value="Settings-Characters"
       ></b-tab-item>
     </b-tabs>
     <router-view></router-view>

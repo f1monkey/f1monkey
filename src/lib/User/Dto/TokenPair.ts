@@ -1,6 +1,11 @@
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
+@Serializable()
 class TokenPair {
+  @JsonProperty()
   private accessToken: string;
 
+  @JsonProperty()
   private refreshToken: string;
 
   constructor(accessToken: string, refreshToken: string) {

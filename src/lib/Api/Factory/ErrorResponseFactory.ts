@@ -1,7 +1,7 @@
 import { AxiosResponse, AxiosError } from 'axios';
 import ErrorResponse from '@/lib/Api/Dto/ErrorResponse';
-import { TypedJSON } from 'typedjson';
 import { injectable } from 'inversify';
+import { deserialize } from 'typescript-json-serializer';
 
 const DEFAULT_ERROR = 'Unknown server error';
 
@@ -18,13 +18,7 @@ class ErrorResponseFactory {
       return this.doCreate(DEFAULT_ERROR);
     }
 
-    const serializer = new TypedJSON<ErrorResponse>(ErrorResponse);
-    const result = serializer.parse(response.data);
-    if (result === undefined) {
-      return this.doCreate(DEFAULT_ERROR);
-    }
-
-    return result;
+    return deserialize(response.data, ErrorResponse);
   }
 
   protected doCreate(message: string): ErrorResponse {

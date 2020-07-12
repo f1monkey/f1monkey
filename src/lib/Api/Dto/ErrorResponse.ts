@@ -1,12 +1,12 @@
 import ErrorResponseError from '@/lib/Api/Dto/ErrorResponseError';
-import { jsonObject, jsonMember, jsonArrayMember } from 'typedjson';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-@jsonObject()
+@Serializable()
 class ErrorResponse {
-  @jsonMember
+  @JsonProperty()
   private message: string
 
-  @jsonArrayMember(ErrorResponseError)
+  @JsonProperty({ type: ErrorResponseError })
   private errors: ErrorResponseError[]
 
   constructor(message: string, errors: ErrorResponseError[] = []) {

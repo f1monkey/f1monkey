@@ -1,32 +1,45 @@
 import TokenPair from '@/lib/User/Dto/TokenPair';
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
+@Serializable()
 class User {
-    private username: string;
+  @JsonProperty()
+  private username: string;
 
-    private email: string|undefined;
+  @JsonProperty()
+  private email: string|undefined;
 
-    private tokens: TokenPair|undefined;
+  @JsonProperty({
+    predicate: (property: TokenPair|undefined) => {
+      if (property && property.accessToken !== undefined) {
+        return TokenPair;
+      }
 
-    constructor(username?: string|undefined, email?: string|undefined) {
-      this.username = username ?? '';
-      this.email = email;
-    }
+      return undefined;
+    },
+  })
+  private tokens: TokenPair|undefined;
 
-    public getUsername(): string {
-      return this.username;
-    }
+  constructor(username?: string|undefined, email?: string|undefined) {
+    this.username = username ?? '';
+    this.email = email;
+  }
 
-    public getEmail(): string|undefined {
-      return this.email;
-    }
+  public getUsername(): string {
+    return this.username;
+  }
 
-    public getTokens(): TokenPair|undefined {
-      return this.tokens;
-    }
+  public getEmail(): string|undefined {
+    return this.email;
+  }
 
-    public setTokens(tokens: TokenPair|undefined): void {
-      this.tokens = tokens;
-    }
+  public getTokens(): TokenPair|undefined {
+    return this.tokens;
+  }
+
+  public setTokens(tokens: TokenPair|undefined): void {
+    this.tokens = tokens;
+  }
 }
 
 export default User;

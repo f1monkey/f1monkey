@@ -3,13 +3,13 @@ import VueRouter, { RouteConfig } from 'vue-router';
 
 import auth from '@/router/auth';
 import market from '@/router/market';
+import settings from '@/router/settings';
 
 import container from '@/container';
 import SERVICES from '@/lib/User/services';
 import AuthServiceInterface from '@/lib/User/Service/AuthServiceInterface';
 
 import Home from '@/views/Home.vue';
-import Settings from '@/components/Settings/Settings.vue';
 
 const authService = container.get<AuthServiceInterface>(SERVICES.AuthServiceInterface);
 
@@ -30,11 +30,7 @@ const routes: Array<RouteConfig> = [
     },
     children: [
       ...market,
-      {
-        name: 'Settings',
-        path: '/settings',
-        component: Settings,
-      },
+      ...settings,
     ],
   },
 ];
