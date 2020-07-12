@@ -11,7 +11,7 @@
           </p>
         </div>
         <div class="column is-2">
-          <b-button type="is-danger" @click="destroy">Destroy</b-button>
+          <b-button type="is-danger" @click="confirmDestroy">Terminate</b-button>
         </div>
       </div>
     </div>
@@ -34,8 +34,20 @@ export default class SessionItem extends SessionItemProps {
     return this.$store.getters['sessions/getById'](this.id);
   }
 
+  public confirmDestroy() {
+    this.$buefy.dialog.confirm({
+      title: 'Deleting session',
+      message: 'Are you sure you want to <b>terminate</b> this session? This action cannot be undone.',
+      confirmText: 'Terminate session',
+      type: 'is-danger',
+      hasIcon: true,
+      onConfirm: () => this.destroy(),
+    });
+  }
+
   public async destroy() {
     await this.$store.dispatch('sessions/delete', this.id);
+    this.$buefy.toast.open('Session terminated!');
   }
 }
 
