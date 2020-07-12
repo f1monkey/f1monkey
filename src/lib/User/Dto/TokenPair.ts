@@ -8,25 +8,25 @@ class TokenPair {
   @JsonProperty()
   private refreshToken: string;
 
-  constructor(accessToken: string, refreshToken: string) {
+  @JsonProperty()
+  private sessionId: string;
+
+  constructor(accessToken: string, refreshToken: string, sessionId: string) {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
+    this.sessionId = sessionId;
   }
 
   public getAccessToken(): string {
     return this.accessToken;
   }
 
-  public setAccessToken(accessToken: string): void {
-    this.accessToken = accessToken;
-  }
-
   public getRefreshToken(): string {
     return this.refreshToken;
   }
 
-  public setRefreshToken(refreshToken: string): void {
-    this.refreshToken = refreshToken;
+  public getSessionId(): string {
+    return this.sessionId;
   }
 }
 

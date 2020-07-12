@@ -10,8 +10,20 @@
             {{ item.createdAt.toUTCString() }}
           </p>
         </div>
-        <div class="column is-2">
-          <b-button type="is-danger" @click="confirmDestroy">Terminate</b-button>
+        <div
+          class="column is-2"
+          v-if="!isCurrent()"
+        >
+          <b-button
+            type="is-danger"
+            @click="confirmDestroy"
+          >Terminate</b-button>
+        </div>
+        <div
+          class="column is-2"
+          v-else
+        >
+          <b-button type="is-success" disabled>Current</b-button>
         </div>
       </div>
     </div>
@@ -48,6 +60,10 @@ export default class SessionItem extends SessionItemProps {
   public async destroy() {
     await this.$store.dispatch('sessions/delete', this.id);
     this.$buefy.toast.open('Session terminated!');
+  }
+
+  public isCurrent() {
+    return this.$store.state.user.user.getTokens().getSessionId() === this.item.getId();
   }
 }
 

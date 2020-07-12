@@ -44,7 +44,7 @@ const UserModule: Module<UserState, RootState> = {
       }
 
       const tokenResponse = await authService.loginConfirm(user, payload);
-      commit('SET_TOKENS', new TokenPair(tokenResponse.token, tokenResponse.refreshToken));
+      commit('SET_TOKENS', new TokenPair(tokenResponse.token, tokenResponse.refreshToken, tokenResponse.sessionId));
     },
     register: async ({ commit }, payload: User) => {
       const response = await authService.register(payload);
