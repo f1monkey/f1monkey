@@ -8,6 +8,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/settings',
     component: Settings,
+    name: 'Settings-Characters',
     children: [
       {
         path: '',

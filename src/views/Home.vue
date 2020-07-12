@@ -1,35 +1,29 @@
 <template>
   <div class="home">
-    <b-tabs
-      position="is-right"
-      class="block"
-      @change="go"
-    >
+    <router-tabs :tabs="['Market','Settings-Characters']">
       <b-tab-item
         label="Market"
         icon="bitcoin"
-        value="Market"
       ></b-tab-item>
       <b-tab-item
         label="Settings"
         icon="cog"
-        value="Settings-Characters"
       ></b-tab-item>
-    </b-tabs>
+    </router-tabs>
     <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
+import RouterTabs from '@/components/Common/RouterTabs.vue';
+
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({
+  components: {
+    RouterTabs,
+  },
+})
 export default class HomeView extends Vue {
-  go(tab: string): void {
-    if (this.$router.currentRoute.name === tab) {
-      return;
-    }
-    this.$router.push({ name: tab });
-  }
 }
 </script>
