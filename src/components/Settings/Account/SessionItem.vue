@@ -23,7 +23,10 @@
           class="column is-2"
           v-else
         >
-          <b-button type="is-success" disabled>Current</b-button>
+          <b-button
+            type="is-success"
+            disabled
+          >Current</b-button>
         </div>
       </div>
     </div>
@@ -31,22 +34,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import UserSession from '../../../lib/User/Dto/UserSession';
 
-const SessionItemProps = Vue.extend({
-  props: {
-    id: String,
-  },
-});
-
 @Component
-export default class SessionItem extends SessionItemProps {
+export default class SessionItem extends Vue {
+  @Prop(String)
+  protected readonly id!: string
+
   get item(): UserSession {
     return this.$store.getters['sessions/getById'](this.id);
   }
 
-  public confirmDestroy() {
+  protected confirmDestroy() {
     this.$buefy.dialog.confirm({
       title: 'Deleting session',
       message: 'Are you sure you want to <b>terminate</b> this session? This action cannot be undone.',
@@ -57,12 +57,12 @@ export default class SessionItem extends SessionItemProps {
     });
   }
 
-  public async destroy() {
+  protected async destroy() {
     await this.$store.dispatch('sessions/delete', this.id);
     this.$buefy.toast.open('Session terminated!');
   }
 
-  public isCurrent() {
+  protected isCurrent() {
     return this.$store.state.user.user.getTokens().getSessionId() === this.item.getId();
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <b-tabs :vertical="vertical"
-    :position="position ? position : 'is-right'"
+    :position="position"
     v-model="activeTab"
     class="router-tabs"
   >
@@ -9,19 +9,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-const RouterTabsProps = Vue.extend({
-  props: {
-    routes: Array,
-    vertical: Boolean,
-    position: String,
-  },
-});
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
-export default class RouterTabs extends RouterTabsProps {
-  get activeTab(): number {
+export default class RouterTabs extends Vue {
+  @Prop(Array)
+  protected readonly routes!: string[];
+
+  @Prop({ default: false })
+  protected readonly vertical!: boolean;
+
+  @Prop({ default: 'is-right' })
+  protected readonly position!: string;
+
+  protected get activeTab(): number {
     const indexes = this.routes.map((tab) => {
       const matchedIndexes: number[] = [];
       this.$route.matched.forEach((route, routeIndex) => {
@@ -41,7 +42,7 @@ export default class RouterTabs extends RouterTabsProps {
     return indexes.indexOf(sorted[0]);
   }
 
-  set activeTab(tab: number) {
+  protected set activeTab(tab: number) {
     if (this.$router.currentRoute.name === this.routes[tab]) {
       return;
     }
