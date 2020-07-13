@@ -6,8 +6,8 @@ import market from '@/router/market';
 import settings from '@/router/settings';
 
 import container from '@/container';
-import SERVICES from '@/lib/User/services';
-import AuthServiceInterface from '@/lib/User/Service/AuthServiceInterface';
+import SERVICES from '@/lib/InternalApi/services';
+import AuthServiceInterface from '@/lib/InternalApi/Service/AuthServiceInterface';
 
 import Home from '@/views/Home.vue';
 

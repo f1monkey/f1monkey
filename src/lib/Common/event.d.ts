@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AppEvent = Record<string, any> // { [key: string]: any } ? object
+type AppEvent = Record<string, any>
 
 type AppEventListener = (event: AppEvent) => void;
 

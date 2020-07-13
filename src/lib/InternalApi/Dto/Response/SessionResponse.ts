@@ -1,4 +1,4 @@
-import UserData from '@/lib/User/Dto/Response/UserData';
+import UserData from '@/lib/InternalApi/Dto/Response/UserData';
 
 class SessionResponse {
   public id: string;

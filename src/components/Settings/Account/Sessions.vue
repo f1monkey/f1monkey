@@ -15,7 +15,7 @@
 <script lang="ts">
 import SessionItem from '@/components/Settings/Account/SessionItem.vue';
 import { Component, Vue } from 'vue-property-decorator';
-import UserSession from '../../../lib/User/Dto/UserSession';
+import UserSession from '@/lib/InternalApi/Dto/UserSession';
 
 @Component({
   components: {

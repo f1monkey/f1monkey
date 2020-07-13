@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import User from '@/lib/User/Dto/User';
+import User from '@/lib/InternalApi/Dto/User';
 
 @Component
 export default class RegisterForm extends Vue {

@@ -1,4 +1,4 @@
-import SessionResponse from '@/lib/User/Dto/Response/SessionResponse';
+import SessionResponse from '@/lib/InternalApi/Dto/Response/SessionResponse';
 
 class SessionListResponse {
   public items: SessionResponse[]

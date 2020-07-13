@@ -1,4 +1,4 @@
-import UserSession from '@/lib/User/Dto/UserSession';
+import UserSession from '@/lib/InternalApi/Dto/UserSession';
 
 interface SessionServiceInterface {
   getList(): Promise<UserSession[]>;

@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import UserSession from '../../../lib/User/Dto/UserSession';
+import UserSession from '@/lib/InternalApi/Dto/UserSession';
 
 @Component
 export default class SessionItem extends Vue {

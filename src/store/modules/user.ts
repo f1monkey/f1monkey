@@ -1,11 +1,11 @@
 import { Module } from 'vuex';
 import RootState from '@/store/rootstate';
-import User from '@/lib/User/Dto/User';
+import User from '@/lib/InternalApi/Dto/User';
 import container from '@/container';
-import AuthServiceInterface from '@/lib/User/Service/AuthServiceInterface';
-import SERVICES from '@/lib/User/services';
-import UserStorageInterface from '@/lib/User/Service/UserStorageInterface';
-import TokenPair from '@/lib/User/Dto/TokenPair';
+import AuthServiceInterface from '@/lib/InternalApi/Service/AuthServiceInterface';
+import SERVICES from '@/lib/InternalApi/services';
+import UserStorageInterface from '@/lib/InternalApi/Service/UserStorageInterface';
+import TokenPair from '@/lib/InternalApi/Dto/TokenPair';
 
 const authService = container.get<AuthServiceInterface>(SERVICES.AuthServiceInterface);
 const userStorage = container.get<UserStorageInterface>(SERVICES.UserStorageInterface);

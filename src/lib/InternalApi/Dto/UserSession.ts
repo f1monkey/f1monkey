@@ -1,4 +1,4 @@
-import UserSessionInfo from '@/lib/User/Dto/UserSessionInfo';
+import UserSessionInfo from '@/lib/InternalApi/Dto/UserSessionInfo';
 
 class UserSession {
   private id: string;

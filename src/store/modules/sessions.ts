@@ -1,9 +1,9 @@
 import { Module } from 'vuex';
 import RootState from '@/store/rootstate';
 import container from '@/container';
-import SERVICES from '@/lib/User/services';
-import SessionServiceInterface from '@/lib/User/Service/SessionServiceInterface';
-import UserSession from '@/lib/User/Dto/UserSession';
+import SERVICES from '@/lib/InternalApi/services';
+import SessionServiceInterface from '@/lib/InternalApi/Service/SessionServiceInterface';
+import UserSession from '@/lib/InternalApi/Dto/UserSession';
 
 const sessionService = container.get<SessionServiceInterface>(SERVICES.SessionServiceInterface);
 

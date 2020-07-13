@@ -1,4 +1,4 @@
-import SERVICES from '@/lib/User/services';
+import SERVICES from '@/lib/InternalApi/services';
 
 import AuthView from '@/views/Auth.vue';
 import Auth from '@/components/Auth/Auth.vue';
@@ -8,7 +8,7 @@ import { RouteConfig } from 'vue-router';
 
 import container from '@/container';
 
-import AuthServiceInterface from '@/lib/User/Service/AuthServiceInterface';
+import AuthServiceInterface from '@/lib/InternalApi/Service/AuthServiceInterface';
 
 const authService = container.get<AuthServiceInterface>(SERVICES.AuthServiceInterface);
 

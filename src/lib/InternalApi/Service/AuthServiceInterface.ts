@@ -1,6 +1,6 @@
-import User from '@/lib/User/Dto/User';
-import UserResponse from '@/lib/User/Dto/Response/UserResponse';
-import TokenResponse from '@/lib/User/Dto/Response/TokenResponse';
+import User from '@/lib/InternalApi/Dto/User';
+import UserResponse from '@/lib/InternalApi/Dto/Response/UserResponse';
+import TokenResponse from '@/lib/InternalApi/Dto/Response/TokenResponse';
 
 interface AuthServiceInterface
 {

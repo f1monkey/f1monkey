@@ -1,15 +1,15 @@
-import AuthServiceInterface from '@/lib/User/Service/AuthServiceInterface';
+import AuthServiceInterface from '@/lib/InternalApi/Service/AuthServiceInterface';
 import API_SERVICES from '@/lib/Common/services';
-import USER_SERVICES from '@/lib/User/services';
+import USER_SERVICES from '@/lib/InternalApi/services';
 import ApiClientInterface from '@/lib/Common/Service/ApiClientInterface';
-import LoginConfirmRequest from '@/lib/User/Dto/Request/LoginConfirmRequest';
-import LoginRequest from '@/lib/User/Dto/Request/LoginRequest';
-import RegisterRequest from '@/lib/User/Dto/Request/RegisterRequest';
-import User from '@/lib/User/Dto/User';
+import LoginConfirmRequest from '@/lib/InternalApi/Dto/Request/LoginConfirmRequest';
+import LoginRequest from '@/lib/InternalApi/Dto/Request/LoginRequest';
+import RegisterRequest from '@/lib/InternalApi/Dto/Request/RegisterRequest';
+import User from '@/lib/InternalApi/Dto/User';
 import { inject, injectable } from 'inversify';
-import UserStorageInterface from '@/lib/User/Service/UserStorageInterface';
-import UserResponse from '@/lib/User/Dto/Response/UserResponse';
-import TokenResponse from '@/lib/User/Dto/Response/TokenResponse';
+import UserStorageInterface from '@/lib/InternalApi/Service/UserStorageInterface';
+import UserResponse from '@/lib/InternalApi/Dto/Response/UserResponse';
+import TokenResponse from '@/lib/InternalApi/Dto/Response/TokenResponse';
 
 @injectable()
 class AuthService implements AuthServiceInterface {

@@ -1,13 +1,13 @@
-import UserSession from '@/lib/User/Dto/UserSession';
+import UserSession from '@/lib/InternalApi/Dto/UserSession';
 
 import { inject, injectable } from 'inversify';
-import USER_SERVICES from '@/lib/User/services';
-import SessionFactoryInterface from '@/lib/User/Factory/SessionFactoryInterface';
+import USER_SERVICES from '@/lib/InternalApi/services';
+import SessionFactoryInterface from '@/lib/InternalApi/Factory/SessionFactoryInterface';
 import API_SERVICES from '@/lib/Common/services';
 import ApiClientInterface from '@/lib/Common/Service/ApiClientInterface';
-import SessionListResponse from '@/lib/User/Dto/Response/SessionListResponse';
-import SessionResponse from '@/lib/User/Dto/Response/SessionResponse';
-import SessionServiceInterface from '@/lib/User/Service/SessionServiceInterface';
+import SessionListResponse from '@/lib/InternalApi/Dto/Response/SessionListResponse';
+import SessionResponse from '@/lib/InternalApi/Dto/Response/SessionResponse';
+import SessionServiceInterface from '@/lib/InternalApi/Service/SessionServiceInterface';
 
 @injectable()
 class SessionService implements SessionServiceInterface {

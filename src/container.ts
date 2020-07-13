@@ -1,6 +1,6 @@
 import { Container } from 'inversify';
 
-import registerAuth from '@/lib/User/container';
+import registerAuth from '@/lib/InternalApi/container';
 import registerCommon from '@/lib/Common/container';
 
 const container = new Container();

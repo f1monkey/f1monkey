@@ -1,7 +1,7 @@
 import ApiClientInterface from '@/lib/Common/Service/ApiClientInterface';
 import { injectable, inject } from 'inversify';
-import UserStorageInterface from '@/lib/User/Service/UserStorageInterface';
-import USER_SERVICES from '@/lib/User/services';
+import UserStorageInterface from '@/lib/InternalApi/Service/UserStorageInterface';
+import USER_SERVICES from '@/lib/InternalApi/services';
 import AbstractApiClient from '@/lib/Common/Service/AbstractApiClient';
 
 @injectable()

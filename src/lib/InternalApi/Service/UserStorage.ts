@@ -1,6 +1,6 @@
-import User from '@/lib/User/Dto/User';
-import TokenPair from '@/lib/User/Dto/TokenPair';
-import UserStorageInterface from '@/lib/User/Service/UserStorageInterface';
+import User from '@/lib/InternalApi/Dto/User';
+import TokenPair from '@/lib/InternalApi/Dto/TokenPair';
+import UserStorageInterface from '@/lib/InternalApi/Service/UserStorageInterface';
 import { injectable } from 'inversify';
 import { deserialize } from 'typescript-json-serializer';
 

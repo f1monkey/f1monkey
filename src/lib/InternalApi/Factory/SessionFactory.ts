@@ -1,7 +1,7 @@
-import SessionResponse from '@/lib/User/Dto/Response/SessionResponse';
-import UserSession from '@/lib/User/Dto/UserSession';
-import UserSessionInfo from '@/lib/User/Dto/UserSessionInfo';
-import SessionListResponse from '@/lib/User/Dto/Response/SessionListResponse';
+import SessionResponse from '@/lib/InternalApi/Dto/Response/SessionResponse';
+import UserSession from '@/lib/InternalApi/Dto/UserSession';
+import UserSessionInfo from '@/lib/InternalApi/Dto/UserSessionInfo';
+import SessionListResponse from '@/lib/InternalApi/Dto/Response/SessionListResponse';
 import { injectable } from 'inversify';
 
 @injectable()

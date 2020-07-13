@@ -1,4 +1,4 @@
-import TokenPair from '@/lib/User/Dto/TokenPair';
+import TokenPair from '@/lib/InternalApi/Dto/TokenPair';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
@@ -10,7 +10,7 @@ class User {
   private email: string|undefined;
 
   @JsonProperty({
-    predicate: (property: TokenPair|undefined) => {
+    predicate: (property: Record<string, string>|undefined) => {
       if (property && property.accessToken !== undefined) {
         return TokenPair;
       }
