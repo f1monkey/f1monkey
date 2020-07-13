@@ -7,9 +7,9 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import container from '@/container';
-import SERVICES from '@/lib/Event/services';
-import EventListenerRegistryInterface from '@/lib/Event/Service/EventListenerRegistryInterface';
-import RequestErrorEvent from '@/lib/Api/Event/RequestErrorEvent';
+import SERVICES from '@/lib/Common/services';
+import EventListenerRegistryInterface from '@/lib/Common/Service/EventListenerRegistryInterface';
+import RequestErrorEvent from '@/lib/Common/Event/RequestErrorEvent';
 
 const registry = container.get<EventListenerRegistryInterface>(SERVICES.EventListenerRegistryInterface);
 

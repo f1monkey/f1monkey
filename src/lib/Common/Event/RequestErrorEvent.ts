@@ -1,4 +1,4 @@
-import ErrorResponse from '@/lib/Api/Dto/ErrorResponse';
+import ErrorResponse from '@/lib/Common/Dto/ErrorResponse';
 
 class RequestErrorEvent {
   public response: ErrorResponse;

@@ -1,4 +1,4 @@
-import EventListenerRegistryInterface from '@/lib/Event/Service/EventListenerRegistryInterface';
+import EventListenerRegistryInterface from '@/lib/Common/Service/EventListenerRegistryInterface';
 import { injectable } from 'inversify';
 
 @injectable()

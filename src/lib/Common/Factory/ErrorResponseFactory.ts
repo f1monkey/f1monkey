@@ -1,5 +1,5 @@
 import { AxiosResponse, AxiosError } from 'axios';
-import ErrorResponse from '@/lib/Api/Dto/ErrorResponse';
+import ErrorResponse from '@/lib/Common/Dto/ErrorResponse';
 import { injectable } from 'inversify';
 import { deserialize } from 'typescript-json-serializer';
 

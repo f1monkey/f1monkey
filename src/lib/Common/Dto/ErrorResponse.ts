@@ -1,4 +1,4 @@
-import ErrorResponseError from '@/lib/Api/Dto/ErrorResponseError';
+import ErrorResponseError from '@/lib/Common/Dto/ErrorResponseError';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()

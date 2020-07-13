@@ -1,17 +1,16 @@
-import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
-import EventDispatcherInterface from '@/lib/Event/Service/EventDispatcherInterface';
+import ApiClientInterface from '@/lib/Common/Service/ApiClientInterface';
+import EventDispatcherInterface from '@/lib/Common/Service/EventDispatcherInterface';
 import { injectable, inject } from 'inversify';
-import RequestErrorEvent from '@/lib/Api/Event/RequestErrorEvent';
-import ErrorResponseFactory from '@/lib/Api/Factory/ErrorResponseFactory';
-import API_SERVICES from '@/lib/Api/services';
-import EVENT_SERVICES from '@/lib/Event/services';
+import RequestErrorEvent from '@/lib/Common/Event/RequestErrorEvent';
+import ErrorResponseFactory from '@/lib/Common/Factory/ErrorResponseFactory';
+import SERVICES from '@/lib/Common/services';
 
 @injectable()
 class InternalApiClientErrorProxy implements ApiClientInterface {
   constructor(
-    @inject(API_SERVICES.InternalApiClientImpl) private client: ApiClientInterface,
-    @inject(EVENT_SERVICES.EventDispatcherInterface) private dispatcher: EventDispatcherInterface,
-    @inject(API_SERVICES.ErrorResponseFactory) private factory: ErrorResponseFactory,
+    @inject(SERVICES.InternalApiClientImpl) private client: ApiClientInterface,
+    @inject(SERVICES.EventDispatcherInterface) private dispatcher: EventDispatcherInterface,
+    @inject(SERVICES.ErrorResponseFactory) private factory: ErrorResponseFactory,
   ) {}
 
   async get<T>(url: string, params?: object): Promise<T> {

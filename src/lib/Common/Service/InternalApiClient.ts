@@ -1,8 +1,8 @@
-import ApiClientInterface from '@/lib/Api/Service/ApiClientInterface';
+import ApiClientInterface from '@/lib/Common/Service/ApiClientInterface';
 import { injectable, inject } from 'inversify';
 import UserStorageInterface from '@/lib/User/Service/UserStorageInterface';
 import USER_SERVICES from '@/lib/User/services';
-import AbstractApiClient from '@/lib/Api/Service/AbstractApiClient';
+import AbstractApiClient from '@/lib/Common/Service/AbstractApiClient';
 
 @injectable()
 class InternalApiClient extends AbstractApiClient implements ApiClientInterface {

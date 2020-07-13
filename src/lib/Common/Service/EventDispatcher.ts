@@ -1,7 +1,7 @@
-import EventDispatcherInterface from '@/lib/Event/Service/EventDispatcherInterface';
-import EventListenerRegistryInterface from '@/lib/Event/Service/EventListenerRegistryInterface';
+import EventDispatcherInterface from '@/lib/Common/Service/EventDispatcherInterface';
+import EventListenerRegistryInterface from '@/lib/Common/Service/EventListenerRegistryInterface';
 import { injectable, inject } from 'inversify';
-import SERVICES from '@/lib/Event/services';
+import SERVICES from '@/lib/Common/services';
 
 @injectable()
 class EventDispatcher implements EventDispatcherInterface {
