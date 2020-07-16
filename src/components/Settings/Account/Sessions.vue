@@ -26,10 +26,6 @@ export default class Sessions extends Vue {
   get items(): UserSession[] {
     return this.$store.state.sessions.items;
   }
-
-  constructor() {
-    super();
-  }
 }
 
 </script>

@@ -3,6 +3,7 @@ import Vuex, { StoreOptions } from 'vuex';
 import RootState from '@/store/rootstate';
 import user from '@/store/modules/user';
 import sessions from '@/store/modules/sessions';
+import characters from '@/store/modules/characters';
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ const store: StoreOptions<RootState> = {
   modules: {
     user,
     sessions,
+    characters,
   },
 };
 
