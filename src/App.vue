@@ -6,6 +6,11 @@
     <section class="section is-medium">
       <router-view />
       <error-popup />
+      <b-loading
+        :is-full-page="true"
+        :active.sync="loading"
+        :can-cancel="false"
+      ></b-loading>
     </section>
   </div>
 </template>
@@ -21,7 +26,9 @@ import Vue from 'vue';
   },
 })
 export default class App extends Vue {
-
+  get loading(): boolean {
+    return this.$store.state.loading;
+  }
 }
 </script>
 
