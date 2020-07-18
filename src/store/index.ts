@@ -7,9 +7,11 @@ import characters from '@/store/modules/characters';
 
 Vue.use(Vuex);
 
+let loadingCounter = 0;
+
 const store: StoreOptions<RootState> = {
   state: {
-    loading: true,
+    loading: false,
   },
   mutations: {
     SET_LOADING(state, payload: boolean) {
@@ -17,8 +19,13 @@ const store: StoreOptions<RootState> = {
     },
   },
   actions: {
-    setLoading({ commit }, payload: boolean) {
-      commit('SET_LOADING', payload);
+    loading({ commit }, payload: boolean) {
+      if (payload) {
+        loadingCounter++;
+      } else {
+        loadingCounter--;
+      }
+      commit('SET_LOADING', loadingCounter > 0);
     },
   },
   modules: {

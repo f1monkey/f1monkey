@@ -18,6 +18,7 @@ module.exports = {
     'no-useless-constructor': 'off',
     'class-methods-use-this': 'off',
     'max-len': [2, 200],
+    'no-plusplus': 'off',
   },
   overrides: [
     {
