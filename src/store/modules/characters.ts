@@ -30,14 +30,14 @@ const CharacterModule: Module<CharacterState, RootState> = {
     },
     async delete({ commit }, payload: string) {
       await characterService.delete(payload);
-      commit('DELETE_CHARACTERS', payload);
+      commit('DELETE_CHARACTER', payload);
     },
   },
   mutations: {
     SET_CHARACTERS(state, payload: Character[]) {
       state.items = payload;
     },
-    DELETE_CHARACTERS(state, payload: string) {
+    DELETE_CHARACTER(state, payload: string) {
       state.items = state.items.filter(
         (character) => character.getId() !== payload,
       );

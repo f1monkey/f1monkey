@@ -43,7 +43,7 @@
 
     <footer class="card-footer">
       <!-- <button class="button card-footer-item is-link">Scopes</button> -->
-      <button class="button card-footer-item is-dark">Delete</button>
+      <button class="button card-footer-item is-dark" @click="confirmDelete">Delete</button>
     </footer>
   </div>
 </template>
@@ -70,6 +70,24 @@ export default class CharacterCard extends Vue {
 
   get portrait(): string {
     return this.getPortrait(256);
+  }
+
+  protected confirmDelete() {
+    const { name } = this;
+
+    this.$buefy.dialog.confirm({
+      title: 'Deleting character',
+      message: `Are you sure you want to <b>delete</b> character <b>${name}</b> and all associated data? This action cannot be undone.`,
+      confirmText: 'Delete character',
+      type: 'is-danger',
+      hasIcon: true,
+      onConfirm: () => this.delete(),
+    });
+  }
+
+  protected async delete() {
+    await this.$store.dispatch('characters/delete', this.id);
+    this.$buefy.toast.open('Character deleted!');
   }
 
   protected getPortrait(size: number): string {
