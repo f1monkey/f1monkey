@@ -1,14 +1,21 @@
 import { Module } from 'vuex';
 import RootState from '@/store/rootstate';
 import container from '@/container';
-import SERVICES from '@/lib/InternalApi/services';
+import INTERNAL_API_SERVICES from '@/lib/InternalApi/services';
 import CharacterServiceInterface from '@/lib/InternalApi/Service/CharacterServiceInterface';
 import Character from '@/lib/InternalApi/Dto/Character';
+import ImageServiceInterface from '@/lib/EveApi/Services/ImageServiceInterface';
+import EVEAPI_SERVICES from '@/lib/EveApi/services';
 
-const characterService = container.get<CharacterServiceInterface>(SERVICES.CharacterServiceInterface);
+const characterService = container.get<CharacterServiceInterface>(INTERNAL_API_SERVICES.CharacterServiceInterface);
+const imageService = container.get<ImageServiceInterface>(EVEAPI_SERVICES.ImageServiceInterface);
 
 export interface CharacterState {
   items: Character[];
+}
+
+function getCharacterById(state: CharacterState, id: string): Character | undefined {
+  return state.items.find((character) => character.getId() === id);
 }
 
 const CharacterModule: Module<CharacterState, RootState> = {
@@ -37,7 +44,19 @@ const CharacterModule: Module<CharacterState, RootState> = {
     },
   },
   getters: {
-    getById: (state) => (id: string) => state.items.find((character) => character.getId() === id),
+    getById(state) {
+      return (id: string) => getCharacterById(state, id);
+    },
+    getPortrait(state) {
+      return (id: string, size: number): string | undefined => {
+        const character = getCharacterById(state, id);
+        if (character === undefined) {
+          return undefined;
+        }
+
+        return imageService.getCharacterPortrait(character.getCharacterId(), size);
+      };
+    },
   },
 };
 
