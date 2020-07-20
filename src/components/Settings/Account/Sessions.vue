@@ -14,8 +14,9 @@
 
 <script lang="ts">
 import SessionItem from '@/components/Settings/Account/SessionItem.vue';
-import { Component, Vue } from 'vue-property-decorator';
 import UserSession from '@/lib/InternalApi/Dto/UserSession';
+import { Component, Vue } from 'vue-property-decorator';
+import Loading from '@/components/Decorators/Loading';
 
 @Component({
   components: {
@@ -23,8 +24,17 @@ import UserSession from '@/lib/InternalApi/Dto/UserSession';
   },
 })
 export default class Sessions extends Vue {
-  get items(): UserSession[] {
+  public get items(): UserSession[] {
     return this.$store.state.sessions.items;
+  }
+
+  @Loading
+  public async loadSessions() {
+    await this.$store.dispatch('sessions/getList');
+  }
+
+  async mounted() {
+    await this.loadSessions();
   }
 }
 

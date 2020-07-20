@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <sessions/>
+    <sessions />
   </section>
 </template>
 
@@ -14,13 +14,7 @@ import { Component, Vue } from 'vue-property-decorator';
   },
 })
 export default class Account extends Vue {
-  constructor() {
-    super();
-  }
 
-  mounted() {
-    this.$store.dispatch('sessions/getList');
-  }
 }
 
 </script>

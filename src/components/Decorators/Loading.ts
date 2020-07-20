@@ -1,16 +1,10 @@
-import Component, { createDecorator } from 'vue-class-component';
-import Vue from 'vue';
+import { createDecorator } from 'vue-class-component';
 
 interface HasLoading {
   loading: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isCompatible(component: any): component is HasLoading {
-  return component && typeof component.loading === 'boolean';
-}
-
-export const Loading = createDecorator((options, key) => {
+const Loading = createDecorator((options, key) => {
   if (options.methods === undefined) {
     return;
   }
@@ -19,23 +13,22 @@ export const Loading = createDecorator((options, key) => {
 
   // eslint-disable-next-line no-param-reassign
   options.methods[key] = async function wrapperMethod(...args) {
-    if (!isCompatible(this)) {
-      return;
-    }
-    this.loading = true;
+    const loadingComponent = this.$buefy.loading.open({
+      container: this.$el,
+      isFullPage: false,
+      canCancel: false,
+    });
 
     try {
       await originalMethod.apply(this, args);
-      // eslint-disable-next-line no-useless-catch
+
+    // eslint-disable-next-line no-useless-catch
     } catch (e) {
       throw e;
     } finally {
-      this.loading = false;
+      loadingComponent.close();
     }
   };
 });
 
-@Component
-export class LoadingMixin extends Vue {
-  protected loading = false;
-}
+export default Loading;
